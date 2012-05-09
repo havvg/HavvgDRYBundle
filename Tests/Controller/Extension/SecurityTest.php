@@ -6,6 +6,9 @@ use Havvg\Bundle\CommonControllerBundle\Tests\AbstractTest;
 
 use Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security;
 
+/**
+ * @covers Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security
+ */
 class SecurityTest extends AbstractTest
 {
     public function testGetAclProvider()
