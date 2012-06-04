@@ -1,10 +1,10 @@
 <?php
 
-namespace Havvg\Bundle\CommonControllerBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
 
-use Havvg\Bundle\CommonControllerBundle\Tests\AbstractTest;
+use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 
-use Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security;
+use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
 
 /**
  * @covers Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security

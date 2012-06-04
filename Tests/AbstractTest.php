@@ -1,8 +1,8 @@
 <?php
 
-namespace Havvg\Bundle\CommonControllerBundle\Tests;
+namespace Havvg\Bundle\DRYBundle\Tests;
 
-use Havvg\Bundle\CommonControllerBundle\Tests\Fixtures\Controller;
+use Havvg\Bundle\DRYBundle\Tests\Fixtures\Controller;
 
 abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 {

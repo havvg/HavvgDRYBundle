@@ -1,6 +1,6 @@
 <?php
 
-namespace Havvg\Bundle\CommonControllerBundle\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Controller\Extension;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;

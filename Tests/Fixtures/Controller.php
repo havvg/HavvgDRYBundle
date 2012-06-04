@@ -1,13 +1,13 @@
 <?php
 
-namespace Havvg\Bundle\CommonControllerBundle\Tests\Fixtures;
+namespace Havvg\Bundle\DRYBundle\Tests\Fixtures;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
-use Havvg\Bundle\CommonControllerBundle\Controller\Extension\I18n;
-use Havvg\Bundle\CommonControllerBundle\Controller\Extension\Log;
-use Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security;
-use Havvg\Bundle\CommonControllerBundle\Controller\Extension\Session;
+use Havvg\Bundle\DRYBundle\Controller\Extension\I18n;
+use Havvg\Bundle\DRYBundle\Controller\Extension\Log;
+use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
+use Havvg\Bundle\DRYBundle\Controller\Extension\Session;
 
 class Controller extends BaseController
 {

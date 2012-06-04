@@ -1,8 +1,8 @@
 <?php
 
-namespace Havvg\Bundle\CommonControllerBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
 
-use Havvg\Bundle\CommonControllerBundle\Tests\AbstractTest;
+use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 
 class ExtensionTest extends AbstractTest
 {
