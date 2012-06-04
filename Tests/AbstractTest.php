@@ -27,6 +27,18 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         return $container;
     }
 
+    /**
+     * Return a mock object for the DI ContainerBuilder.
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected function getBuilder()
+    {
+        $builder = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
+
+        return $builder;
+    }
+
     protected function createController()
     {
         return new Controller();
