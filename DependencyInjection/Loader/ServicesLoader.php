@@ -132,15 +132,15 @@ class ServicesLoader
     protected function initialize()
     {
         if (null === $this->finder) {
-            $this->finder = Finder::create();
+            $this->setFinder(Finder::create());
         }
 
         if (null === $this->fileLocator) {
-            $this->fileLocator = new FileLocator($this->serviceDirectory);
+            $this->setFileLocator(new FileLocator($this->serviceDirectory));
         }
 
         if (null === $this->fileLoader) {
-            $this->fileLoader = new YamlFileLoader($this->builder, $this->fileLocator);
+            $this->setFileLoader(new YamlFileLoader($this->builder, $this->fileLocator));
         }
     }
 }
