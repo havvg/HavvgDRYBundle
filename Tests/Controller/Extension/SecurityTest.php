@@ -7,7 +7,7 @@ use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
 
 /**
- * @covers Havvg\Bundle\CommonControllerBundle\Controller\Extension\Security
+ * @covers Havvg\Bundle\DRYBundle\Controller\Extension\Security
  */
 class SecurityTest extends AbstractTest
 {
