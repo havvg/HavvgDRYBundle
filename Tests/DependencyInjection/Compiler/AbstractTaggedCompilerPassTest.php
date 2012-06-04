@@ -15,7 +15,7 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
 {
     public function testWithoutTargetService()
     {
-        $builder = $this->getBuilder();
+        $builder = $this->getBuilderMock();
         $builder->expects($this->once())
             ->method('hasDefinition')
             ->will($this->returnValue(false))
@@ -31,7 +31,7 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
 
     public function testWithoutTaggedServices()
     {
-        $builder = $this->getBuilder();
+        $builder = $this->getBuilderMock();
         $builder
             ->expects($this->once())
             ->method('hasDefinition')

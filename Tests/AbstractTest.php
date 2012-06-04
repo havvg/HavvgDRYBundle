@@ -32,7 +32,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    protected function getBuilder()
+    protected function getBuilderMock()
     {
         $builder = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
@@ -42,5 +42,10 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
     protected function createController()
     {
         return new Controller();
+    }
+
+    protected function getFixturesDirectory()
+    {
+        return __DIR__.'/Fixtures';
     }
 }

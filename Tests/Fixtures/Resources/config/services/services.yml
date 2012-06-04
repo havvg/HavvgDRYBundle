@@ -1,0 +1,3 @@
+services:
+    acme.services_loader.test:
+        class: Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService
