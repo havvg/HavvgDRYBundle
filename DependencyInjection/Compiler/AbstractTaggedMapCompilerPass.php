@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
-class AbstractTaggedMapCompilerPass implements CompilerPassInterface
+abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
 {
     protected $mapServiceTag;
     protected $targetServiceTag;
@@ -30,7 +30,7 @@ class AbstractTaggedMapCompilerPass implements CompilerPassInterface
         }
 
         foreach ($container->findTaggedServiceIds($this->targetServiceTag) as $id => $tags) {
-            $alias = $tags[0]['alias'];
+            $alias = &$tags[0]['alias'];
 
             if (!empty($mapServices[$alias])) {
                 $targetDefinition = $container->getDefinition($id);
