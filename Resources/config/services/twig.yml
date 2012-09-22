@@ -1,0 +1,5 @@
+services:
+    havvg_dry.twig.extension.global_objects:
+        class: Havvg\Bundle\DRYBundle\Twig\Extension\GlobalObjectsExtension
+        tags:
+            - { name: 'twig.extension' }

@@ -66,6 +66,7 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
         $builder->addDefinitions(array(
             'acme.target_service' => $targetService,
             'acme.provider_service' => $providerService,
+            'acme.other_service' => $otherService,
         ));
 
         $builder->addCompilerPass(new TaggedCompilerPass());

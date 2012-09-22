@@ -5,7 +5,8 @@ set_time_limit(0);
 
 $vendorDir = __DIR__;
 $deps = array(
-    array('symfony', 'git://github.com/symfony/symfony', 'origin/master'),
+    array('symfony', 'git://github.com/symfony/symfony.git', 'origin/master'),
+    array('twig', 'git://github.com/fabpot/Twig.git', 'origin/master'),
 );
 
 foreach ($deps as $dep) {
