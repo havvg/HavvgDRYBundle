@@ -11,6 +11,13 @@ use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
  */
 class SecurityTest extends AbstractTest
 {
+    protected function setUp()
+    {
+        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+            $this->markTestSkipped();
+        }
+    }
+
     public function testGetAclProvider()
     {
         $aclProvider = $this->getMockForAbstractClass('Symfony\Component\Security\Acl\Model\AclProviderInterface');

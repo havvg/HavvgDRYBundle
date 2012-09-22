@@ -39,6 +39,16 @@ trait I18n
     }
 
     /**
+     * Return the current request.
+     *
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        return $this->get('request');
+    }
+
+    /**
      * Return the locale of the current request.
      *
      * @return string
