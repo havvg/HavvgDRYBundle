@@ -14,19 +14,47 @@ abstract class AbstractTaggedCompilerPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container)
     {
-        if (null === $this->targetService) {
+        if (null === $this->getTargetService()) {
             return;
         }
 
-        if (!$container->hasDefinition($this->targetService)) {
+        if (!$container->hasDefinition($this->getTargetService())) {
             return;
         }
 
-        foreach ($container->findTaggedServiceIds($this->tag) as $id => $tags) {
+        foreach ($container->findTaggedServiceIds($this->getTag()) as $id => $tags) {
             $container
-                ->getDefinition($this->targetService)
-                ->addMethodCall($this->targetMethod, array(new Reference($id)))
+                ->getDefinition($this->getTargetService())
+                ->addMethodCall($this->getTargetMethod(), $this->getArguments($id, $container))
             ;
         }
+    }
+
+    /**
+     * Return the argument list on the target method for a single service.
+     *
+     * @param string           $id
+     * @param ContainerBuilder $container
+     *
+     * @return array
+     */
+    protected function getArguments($id, ContainerBuilder $container)
+    {
+        return array(new Reference($id));
+    }
+
+    protected function getTag()
+    {
+        return $this->tag;
+    }
+
+    protected function getTargetMethod()
+    {
+        return $this->targetMethod;
+    }
+
+    protected function getTargetService()
+    {
+        return $this->targetService;
     }
 }
