@@ -1,3 +1,2 @@
 /vendor/*
-!/vendor/vendors.php
 /Tests/autoload.php

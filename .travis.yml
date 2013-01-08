@@ -9,7 +9,6 @@ matrix:
         - php: 5.5
 
 before_script:
-    - wget http://getcomposer.org/composer.phar
-    - php composer.phar install --dev
+    - composer install --dev
 
 script: phpunit --colors --coverage-text
