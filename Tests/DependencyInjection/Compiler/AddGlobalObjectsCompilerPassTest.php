@@ -9,6 +9,9 @@ use Havvg\Bundle\DRYBundle\DependencyInjection\Compiler\AddGlobalObjectsCompiler
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
+/**
+ * @covers Havvg\Bundle\DRYBundle\DependencyInjection\Compiler\AddGlobalObjectsCompilerPass
+ */
 class AddGlobalObjectsCompilerPassTest extends AbstractTest
 {
     public function testWithoutTargetService()
