@@ -33,6 +33,7 @@
         "phpunit/phpunit": "3.7.*",
         "twig/twig": "1.*",
         "symfony/finder": "2.1.*",
-        "symfony/options-resolver": "2.1.*"
+        "symfony/options-resolver": "2.1.*",
+        "symfony/security": "2.1.*"
     }
 }
