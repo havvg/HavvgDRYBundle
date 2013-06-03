@@ -30,11 +30,12 @@
         }
     },
     "require-dev": {
+        "havvg/lock": "~1.0",
         "phpunit/phpunit": "~3.7",
         "twig/twig": "~1.12",
+        "symfony/console": "~2.2",
         "symfony/finder": "~2.2",
         "symfony/options-resolver": "~2.2",
-        "symfony/security": "~2.2",
-        "symfony/console": "~2.2"
+        "symfony/security": "~2.2"
     }
 }
