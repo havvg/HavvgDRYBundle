@@ -1,9 +1,10 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Command\Extension;
+namespace Havvg\Bundle\DRYBundle\Command;
 
 use Havvg\Component\Lock\Acquirer\AcquirerInterface;
 use Havvg\Component\Lock\Exception\ExceptionInterface;
+use Havvg\Component\Lock\Lock\ExpiringLockInterface;
 use Havvg\Component\Lock\Lock\LockInterface;
 use Havvg\Component\Lock\Repository\RepositoryInterface;
 use Havvg\Component\Lock\Resource\ResourceInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * This allows to have the same command running only once at a time.
  */
-trait Lock
+trait LockTrait
 {
     /**
      * @var LockInterface|null
@@ -41,6 +42,14 @@ trait Lock
 
         try {
             $this->lock = $this->getRepository()->acquire($this->getAcquirer(), $this->getResource());
+
+            if ($this->lock instanceof ExpiringLockInterface) {
+                if ($this->lock->getExpiresAt() < new \DateTime()) {
+                    $this->getRepository()->release($this->lock);
+
+                    $this->lock = $this->getRepository()->acquire($this->getAcquirer(), $this->getResource());
+                }
+            }
         } catch (ExceptionInterface $e) {
             throw new \RuntimeException('The command could not run.', $input->getOption('lock-error-code'), $e);
         }

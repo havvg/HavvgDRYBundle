@@ -1,6 +1,6 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Command\Extension;
+namespace Havvg\Bundle\DRYBundle\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 /**
  * The Cluster enables a Command to be processed in parallel splitting items among the clustering processes.
  */
-trait Cluster
+trait ClusterTrait
 {
     /**
      * The size of the cluster.

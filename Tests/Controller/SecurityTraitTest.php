@@ -1,15 +1,14 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Controller;
 
+use Havvg\Bundle\DRYBundle\Controller\SecurityTrait;
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 
-use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
-
 /**
- * @covers Havvg\Bundle\DRYBundle\Controller\Extension\Security
+ * @covers Havvg\Bundle\DRYBundle\Controller\SecurityTrait
  */
-class SecurityTest extends AbstractTest
+class SecurityTraitTest extends AbstractTest
 {
     protected function setUp()
     {

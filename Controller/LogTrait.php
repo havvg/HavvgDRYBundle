@@ -1,8 +1,8 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Controller;
 
-trait Log
+trait LogTrait
 {
     /**
      * Gets a service by id.
@@ -16,7 +16,7 @@ trait Log
     /**
      * Return the logger service.
      *
-     * @return \Symfony\Component\HttpKernel\Log\LoggerInterface
+     * @return \Psr\Log\LoggerInterface
      */
     public function getLogger()
     {
@@ -46,7 +46,7 @@ trait Log
      */
     public function logCritical($message, array $context = array())
     {
-        $this->getLogger()->crit($message, $context);
+        $this->getLogger()->critical($message, $context);
     }
 
     /**
@@ -57,7 +57,7 @@ trait Log
      */
     public function logError($message, array $context = array())
     {
-        $this->getLogger()->err($message, $context);
+        $this->getLogger()->error($message, $context);
     }
 
     /**
@@ -70,7 +70,7 @@ trait Log
      */
     public function logWarning($message, array $context = array())
     {
-        $this->getLogger()->warn($message, $context);
+        $this->getLogger()->warning($message, $context);
     }
 
     /**

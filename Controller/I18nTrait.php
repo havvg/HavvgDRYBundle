@@ -1,8 +1,8 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Controller;
 
-trait I18n
+trait I18nTrait
 {
     /**
      * Gets a service by id.
@@ -36,6 +36,22 @@ trait I18n
     public function trans($id, array $parameters = array(), $domain = null, $locale = null)
     {
         return $this->getTranslator()->trans($id, $parameters, $domain, $locale);
+    }
+
+    /**
+     * Translates the given choice message by choosing a translation according to a number.
+     *
+     * @param string  $id         The message id (may also be an object that can be cast to string)
+     * @param integer $number     The number to use to find the indice of the message
+     * @param array   $parameters An array of parameters for the message
+     * @param string  $domain     The domain for the message
+     * @param string  $locale     The locale
+     *
+     * @return string The translated string
+     */
+    public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
+    {
+        return $this->getTranslator()->transChoice($id, $number, $parameters, $domain, $locale);
     }
 
     /**

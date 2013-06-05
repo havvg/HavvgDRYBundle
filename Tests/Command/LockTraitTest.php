@@ -1,6 +1,6 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Command;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Havvg\Bundle\DRYBundle\Tests\Fixtures\AbstractLockCommand;
@@ -13,9 +13,9 @@ use Havvg\Component\Lock\Resource\ResourceInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * @covers Havvg\Bundle\DRYBundle\Command\Extension\Lock
+ * @covers Havvg\Bundle\DRYBundle\Command\LockTrait
  */
-class LockTest extends AbstractTest
+class LockTraitTest extends AbstractTest
 {
     protected function setUp()
     {
@@ -76,6 +76,45 @@ class LockTest extends AbstractTest
         ;
         $repository
             ->expects($this->once())
+            ->method('release')
+            ->with($lock)
+        ;
+
+        $tester = new CommandTester($this->getMockCommand($repository));
+        $exit = $tester->execute(array());
+
+        $this->assertEquals(0, $exit);
+    }
+
+    public function testExpiredLockIsReplacedByNewOne()
+    {
+        $lock = $this->getMock('Havvg\Component\Lock\Lock\LockInterface');
+
+        $expiredLock = $this->getMock('Havvg\Component\Lock\Lock\ExpiringLockInterface');
+        $expiredLock
+            ->expects($this->once())
+            ->method('getExpiresAt')
+            ->will($this->returnValue(new \DateTime('-1 hour')))
+        ;
+
+        $repository = $this->getMock('Havvg\Component\Lock\Repository\RepositoryInterface');
+        $repository
+            ->expects($this->at(0))
+            ->method('acquire')
+            ->will($this->returnValue($expiredLock))
+        ;
+        $repository
+            ->expects($this->at(1))
+            ->method('release')
+            ->with($expiredLock)
+        ;
+        $repository
+            ->expects($this->at(2))
+            ->method('acquire')
+            ->will($this->returnValue($lock))
+        ;
+        $repository
+            ->expects($this->at(3))
             ->method('release')
             ->with($lock)
         ;

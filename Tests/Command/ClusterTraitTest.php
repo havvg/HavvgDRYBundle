@@ -1,15 +1,16 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Command;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Havvg\Bundle\DRYBundle\Tests\Fixtures\ClusterCommand;
+
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
- * @covers Havvg\Bundle\DRYBundle\Command\Extension\Cluster
+ * @covers Havvg\Bundle\DRYBundle\Command\ClusterTrait
  */
-class ClusterTest extends AbstractTest
+class ClusterTraitTest extends AbstractTest
 {
     protected function setUp()
     {
@@ -70,5 +71,31 @@ class ClusterTest extends AbstractTest
         ));
 
         $this->assertEquals(0, $exit);
+    }
+
+    public function testInvalidCluster()
+    {
+        $tester = new CommandTester(new ClusterCommand());
+
+        $this->setExpectedException('InvalidArgumentException');
+
+        $tester->execute(array(
+            'record' => 8,
+            '--cluster-size' => 5,
+            '--cluster' => 0,
+        ));
+    }
+
+    public function testInvalidClusterSize()
+    {
+        $tester = new CommandTester(new ClusterCommand());
+
+        $this->setExpectedException('OutOfRangeException');
+
+        $tester->execute(array(
+            'record' => 8,
+            '--cluster-size' => 5,
+            '--cluster' => 7,
+        ));
     }
 }

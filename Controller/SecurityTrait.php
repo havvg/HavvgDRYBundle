@@ -1,11 +1,11 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Controller;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-trait Security
+trait SecurityTrait
 {
     /**
      * Gets a service by id.

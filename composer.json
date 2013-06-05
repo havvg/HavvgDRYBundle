@@ -26,12 +26,13 @@
     "target-dir": "Havvg/Bundle/DRYBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "2.0.x-dev"
         }
     },
     "require-dev": {
-        "havvg/lock": "~1.0",
+        "havvg/lock": "~2.0",
         "phpunit/phpunit": "~3.7",
+        "psr/log": "~1.0",
         "twig/twig": "~1.12",
         "symfony/console": "~2.2",
         "symfony/finder": "~2.2",

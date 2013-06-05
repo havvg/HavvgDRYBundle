@@ -2,16 +2,16 @@
 
 namespace Havvg\Bundle\DRYBundle\Tests\Fixtures;
 
+use Havvg\Bundle\DRYBundle\Command\ClusterTrait;
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Havvg\Bundle\DRYBundle\Command\Extension\Cluster;
-
 class ClusterCommand extends Command
 {
-    use Cluster;
+    use ClusterTrait;
 
     protected function configure()
     {

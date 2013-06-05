@@ -2,17 +2,17 @@
 
 namespace Havvg\Bundle\DRYBundle\Tests\Fixtures;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
+use Havvg\Bundle\DRYBundle\Controller\I18nTrait;
+use Havvg\Bundle\DRYBundle\Controller\LogTrait;
+use Havvg\Bundle\DRYBundle\Controller\SecurityTrait;
+use Havvg\Bundle\DRYBundle\Controller\SessionTrait;
 
-use Havvg\Bundle\DRYBundle\Controller\Extension\I18n;
-use Havvg\Bundle\DRYBundle\Controller\Extension\Log;
-use Havvg\Bundle\DRYBundle\Controller\Extension\Security;
-use Havvg\Bundle\DRYBundle\Controller\Extension\Session;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use I18n;
-    use Log;
-    use Security;
-    use Session;
+    use I18nTrait;
+    use LogTrait;
+    use SecurityTrait;
+    use SessionTrait;
 }

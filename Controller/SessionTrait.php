@@ -1,8 +1,8 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Controller;
 
-trait Session
+trait SessionTrait
 {
     /**
      * Gets a service by id.
@@ -32,6 +32,17 @@ trait Session
     public function setFlash($type, $value)
     {
         $this->getSession()->getFlashBag()->set($type, $value);
+    }
+
+    /**
+     * Add a flash message.
+     *
+     * @param string $type
+     * @param string $value
+     */
+    public function addFlash($type, $value)
+    {
+        $this->getSession()->getFlashBag()->add($type, $value);
     }
 
     /**

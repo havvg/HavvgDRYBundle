@@ -1,10 +1,10 @@
 <?php
 
-namespace Havvg\Bundle\DRYBundle\Tests\Controller\Extension;
+namespace Havvg\Bundle\DRYBundle\Tests\Controller;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 
-class ExtensionTest extends AbstractTest
+class ControllerTest extends AbstractTest
 {
     protected function setUp()
     {
