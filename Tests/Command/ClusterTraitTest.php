@@ -12,10 +12,10 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 class ClusterTraitTest extends AbstractTest
 {
-    protected function setUp()
+    public static function setUpBeforeClass()
     {
         if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $this->markTestSkipped();
+            self::markTestSkipped();
         }
     }
 
