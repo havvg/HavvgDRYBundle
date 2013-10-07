@@ -16,7 +16,8 @@
     "suggest": {
         "twig/twig": "Enables the usage of Twig extensions.",
         "symfony/finder": "Enables the usage of file based helpers.",
-        "symfony/options-resolver": "Enables the usage of the ContainerConfigurationRegistry"
+        "symfony/form": "Enables the usage of form extensions.",
+        "symfony/options-resolver": "Enables the usage of the ContainerConfigurationRegistry."
     },
     "autoload": {
         "psr-0": {
@@ -36,6 +37,7 @@
         "twig/twig": "~1.12",
         "symfony/console": "~2.2",
         "symfony/finder": "~2.2",
+        "symfony/form": "~2.2",
         "symfony/options-resolver": "~2.2",
         "symfony/security": "~2.2"
     }
