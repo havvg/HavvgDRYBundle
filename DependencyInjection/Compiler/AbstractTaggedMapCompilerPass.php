@@ -16,13 +16,15 @@ abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
     {
         $mapServices = array();
         foreach ($container->findTaggedServiceIds($this->getMapServiceTag()) as $id => $tags) {
-            $targetId = &$tags[0]['target'];
+            foreach ($tags as $eachTag) {
+                $targetId = $eachTag['target'];
 
-            if (empty($mapServices[$targetId])) {
-                $mapServices[$targetId] = array();
+                if (empty($mapServices[$targetId])) {
+                    $mapServices[$targetId] = array();
+                }
+
+                $mapServices[$targetId][] = $id;
             }
-
-            $mapServices[$targetId][] = $id;
         }
 
         if (empty($mapServices)) {
@@ -30,13 +32,15 @@ abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
         }
 
         foreach ($container->findTaggedServiceIds($this->getTargetServiceTag()) as $id => $tags) {
-            $alias = &$tags[0]['alias'];
+            foreach ($tags as $eachTag) {
+                $alias = $eachTag['alias'];
 
-            if (!empty($mapServices[$alias])) {
-                $targetDefinition = $container->getDefinition($id);
+                if (!empty($mapServices[$alias])) {
+                    $targetDefinition = $container->getDefinition($id);
 
-                foreach ($mapServices[$alias] as $eachMapServiceId) {
-                    $targetDefinition->addMethodCall($this->getTargetMethod(), $this->getArguments($eachMapServiceId, $container));
+                    foreach ($mapServices[$alias] as $eachMapServiceId) {
+                        $targetDefinition->addMethodCall($this->getTargetMethod(), $this->getArguments($eachMapServiceId, $container));
+                    }
                 }
             }
         }
