@@ -76,13 +76,16 @@ class ContainerConfigurationRegistry
         /*
          * Load all configuration files defining services.
          */
-        $services = Finder::create()
-            ->files()
-            ->name('*.'.$type)
-            ->in($configDir.'/'.$this->options['services_dir_name'])
-        ;
-        foreach ($services as $eachFile) {
-            $loader->load($eachFile->getRealPath());
+        $servicesDir = $configDir.'/'.$this->options['services_dir_name'];
+        if (is_dir($servicesDir)) {
+            $services = Finder::create()
+                ->files()
+                ->name('*.'.$type)
+                ->in($configDir.'/'.$this->options['services_dir_name'])
+            ;
+            foreach ($services as $eachFile) {
+                $loader->load($eachFile->getRealPath());
+            }
         }
 
         /*
