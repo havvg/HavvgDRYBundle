@@ -191,7 +191,7 @@ class ContainerConfigurationRegistry
             // The directory name where to load bundle configurations from.
             'bundles_dir_name' => 'bundles',
 
-            // Whether to load files from 'config_dir' prior to loading 'env_config_dir'.
+            // Whether to load files from 'env_global_config_dir' prior to loading 'env_config_dir'.
             'load_global_env_defaults' => true,
 
             // Whether to load the global bundles configuration.
