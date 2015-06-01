@@ -8,11 +8,33 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AddGlobalObjectsCompilerPass implements CompilerPassInterface
 {
+    /**
+     * The tag for global twig objects.
+     *
+     * @var string
+     */
     protected $tag = 'havvg_dry.twig.global_object';
+
+    /**
+     * The service name of the twig extension.
+     *
+     * @var string
+     */
     protected $targetService = 'havvg_dry.twig.extension.global_objects';
+
+    /**
+     * @var string
+     */
     protected $targetMethod = 'addGlobal';
 
-    public function process(ContainerBuilder $container)
+    /**
+     * References tagged services with the global object twig extension.
+     *
+     * @see Havvg\Bundle\DRYBundle\Twig\Extension\GlobalObjectsExtension
+     *
+     * @param ContainerBuilder $container
+     */
+    final public function process(ContainerBuilder $container)
     {
         if (!$container->hasDefinition($this->targetService)) {
             return;
@@ -23,6 +45,7 @@ class AddGlobalObjectsCompilerPass implements CompilerPassInterface
             foreach ($tags as $eachTag) {
                 if (!empty($eachTag['alias'])) {
                     $key = $eachTag['alias'];
+
                     break;
                 }
             }

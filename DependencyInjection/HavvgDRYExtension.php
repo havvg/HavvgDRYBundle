@@ -4,7 +4,6 @@ namespace Havvg\Bundle\DRYBundle\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Havvg\Bundle\DRYBundle\DependencyInjection\Loader\ServicesLoader;
 
 class HavvgDRYExtension extends Extension

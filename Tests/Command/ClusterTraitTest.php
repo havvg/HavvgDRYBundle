@@ -4,7 +4,6 @@ namespace Havvg\Bundle\DRYBundle\Tests\Command;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Havvg\Bundle\DRYBundle\Tests\Fixtures\ClusterCommand;
-
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**

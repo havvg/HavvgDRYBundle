@@ -3,11 +3,9 @@
 namespace Havvg\Bundle\DRYBundle\DependencyInjection\Loader;
 
 use Symfony\Component\Config\FileLocator;
-
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\FileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -64,7 +62,7 @@ class ServicesLoader
     }
 
     /**
-     * Load the files within the service directory.
+     * Loads the files within the service directory.
      */
     public function load()
     {
@@ -83,7 +81,7 @@ class ServicesLoader
     }
 
     /**
-     * Set the Finder to be used to find files.
+     * Sets the Finder to be used to find files.
      *
      * @param Finder $finder
      *
@@ -97,7 +95,7 @@ class ServicesLoader
     }
 
     /**
-     * Set the file loader to be used.
+     * Sets the file loader to be used.
      *
      * @param FileLoader $fileLoader
      *
@@ -111,7 +109,7 @@ class ServicesLoader
     }
 
     /**
-     * Set the file locator to be used.
+     * Sets the file locator to be used.
      *
      * @param FileLocator $fileLocator
      *
@@ -125,7 +123,7 @@ class ServicesLoader
     }
 
     /**
-     * Initialize this loader.
+     * Initializes this loader.
      *
      * This will initialize the defaults for basic usage.
      */

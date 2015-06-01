@@ -19,7 +19,7 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $container
             ->expects($this->atLeastOnce())
             ->method('get')
-            ->will($this->returnCallback(function($service) use ($services) {
+            ->will($this->returnCallback(function ($service) use ($services) {
                 return $services[$service];
             }))
         ;

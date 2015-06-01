@@ -3,7 +3,6 @@
 namespace Havvg\Bundle\DRYBundle\Tests\DependencyInjection\Loader;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
-
 use Havvg\Bundle\DRYBundle\DependencyInjection\Loader\ServicesLoader;
 
 /**

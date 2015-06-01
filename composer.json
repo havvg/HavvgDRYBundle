@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "symfony/framework-bundle": "~2.2"
+        "symfony/framework-bundle": "~2.7"
     },
     "suggest": {
         "twig/twig": "Enables the usage of Twig extensions.",
@@ -20,25 +20,25 @@
         "symfony/options-resolver": "Enables the usage of the ContainerConfigurationRegistry."
     },
     "autoload": {
-        "psr-0": {
-            "Havvg\\Bundle\\DRYBundle": ""
+        "psr-4": {
+            "Havvg\\Bundle\\DRYBundle\\": ""
         }
     },
-    "target-dir": "Havvg/Bundle/DRYBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     },
     "require-dev": {
         "havvg/lock": "~2.0",
-        "phpunit/phpunit": "~3.7",
+        "phpunit/phpunit": "~4.6",
         "psr/log": "~1.0",
         "twig/twig": "~1.12",
-        "symfony/console": "~2.2",
-        "symfony/finder": "~2.2",
-        "symfony/form": "~2.2",
-        "symfony/options-resolver": "~2.2",
-        "symfony/security": "~2.2"
+        "symfony/console": "~2.7",
+        "symfony/finder": "~2.7",
+        "symfony/form": "~2.7",
+        "symfony/options-resolver": "~2.7",
+        "symfony/security": "~2.7",
+        "symfony/expression-language": "~2.7"
     }
 }

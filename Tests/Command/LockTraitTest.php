@@ -4,12 +4,10 @@ namespace Havvg\Bundle\DRYBundle\Tests\Command;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Havvg\Bundle\DRYBundle\Tests\Fixtures\AbstractLockCommand;
-
 use Havvg\Component\Lock\Acquirer\AcquirerInterface;
 use Havvg\Component\Lock\Exception\ResourceLockedException;
 use Havvg\Component\Lock\Repository\RepositoryInterface;
 use Havvg\Component\Lock\Resource\ResourceInterface;
-
 use Symfony\Component\Console\Tester\CommandTester;
 
 /**
@@ -126,7 +124,7 @@ class LockTraitTest extends AbstractTest
     }
 
     /**
-     * @param RepositoryInterface $repository
+     * @param RepositoryInterface    $repository
      * @param ResourceInterface|null $resource
      * @param AcquirerInterface|null $acquirer
      *

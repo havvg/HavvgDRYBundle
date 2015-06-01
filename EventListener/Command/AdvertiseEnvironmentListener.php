@@ -3,10 +3,8 @@
 namespace Havvg\Bundle\DRYBundle\EventListener\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
-
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AdvertiseEnvironmentListener implements EventSubscriberInterface

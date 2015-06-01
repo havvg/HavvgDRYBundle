@@ -6,7 +6,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ContainerConfigurationRegistry
 {
@@ -25,11 +24,11 @@ class ContainerConfigurationRegistry
      *
      * @see setDefaultOptions
      *
-     * @param KernelInterface               $kernel   The kernel to load the configuration for.
-     * @param array                         $options  The options applied to this registry.
-     * @param OptionsResolverInterface|null $resolver An optional resolver, if none is given the default implementation will be used.
+     * @param KernelInterface      $kernel   The kernel to load the configuration for.
+     * @param array                $options  The options applied to this registry.
+     * @param OptionsResolver|null $resolver An optional resolver, if none is given an empty one will be used.
      */
-    public function __construct(KernelInterface $kernel, array $options = array(), OptionsResolverInterface $resolver = null)
+    public function __construct(KernelInterface $kernel, array $options = array(), OptionsResolver $resolver = null)
     {
         $this->kernel = $kernel;
 
@@ -41,6 +40,12 @@ class ContainerConfigurationRegistry
         $this->options = $resolver->resolve($options);
     }
 
+    /**
+     * Registers the container configuration based on the provided configuration.
+     *
+     * @param LoaderInterface $loader
+     * @param string          $type
+     */
     public function register(LoaderInterface $loader, $type = 'yml')
     {
         $configDir = $this->options['config_dir'];
@@ -128,7 +133,7 @@ class ContainerConfigurationRegistry
     }
 
     /**
-     * Set the default options for the registry.
+     * Sets the default options for the registry.
      *
      * The default setup results in a configuration directory structure like:
      *
@@ -174,9 +179,9 @@ class ContainerConfigurationRegistry
      * app/config/environments/dev/bundles/
      *                                    /havvg_jasmine.yml
      *
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    protected function setDefaultOptions(OptionsResolverInterface $resolver)
+    protected function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             // The environment to load configuration for.
@@ -213,24 +218,28 @@ class ContainerConfigurationRegistry
             ),
         ));
 
-        $resolver->setAllowedTypes(array(
-            'env' => 'string',
+        $resolver->setAllowedTypes('env', ['string']);
 
-            'config_dir' => 'string',
-            'env_global_config_dir' => 'string',
-            'env_config_dir' => 'string',
+        $resolver->setAllowedTypes('config_dir', ['string']);
+        $resolver->setAllowedTypes('env_global_config_dir', ['string']);
+        $resolver->setAllowedTypes('env_config_dir', ['string']);
 
-            'services_dir_name' => 'string',
-            'bundles_dir_name' => 'string',
+        $resolver->setAllowedTypes('services_dir_name', ['string']);
+        $resolver->setAllowedTypes('bundles_dir_name', ['string']);
 
-            'load_global_env_defaults' => 'bool',
-            'load_global_bundles' => 'bool',
-            'allow_env_bundles' => 'bool',
+        $resolver->setAllowedTypes('load_global_env_defaults', ['bool']);
+        $resolver->setAllowedTypes('load_global_bundles', ['bool']);
+        $resolver->setAllowedTypes('allow_env_bundles', ['bool']);
 
-            'config_files' => 'array',
-        ));
+        $resolver->setAllowedTypes('config_files', ['array']);
     }
 
+    /**
+     * Loads the given file, if it exsists, skips otherwise.
+     *
+     * @param LoaderInterface $loader
+     * @param string          $filename
+     */
     protected function loadIfExists(LoaderInterface $loader, $filename)
     {
         if (file_exists($filename)) {

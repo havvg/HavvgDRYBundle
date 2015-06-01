@@ -8,7 +8,6 @@ use Havvg\Component\Lock\Lock\ExpiringLockInterface;
 use Havvg\Component\Lock\Lock\LockInterface;
 use Havvg\Component\Lock\Repository\RepositoryInterface;
 use Havvg\Component\Lock\Resource\ResourceInterface;
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -34,6 +33,12 @@ trait LockTrait
         $this->addOption('lock-error-code', null, InputOption::VALUE_REQUIRED, 'The error code to be returned if the command is locked.', 1);
     }
 
+    /**
+     * Initializes the lock configuration from the input.
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function initializeLock(InputInterface $input, OutputInterface $output)
     {
         if ($input->getOption('no-lock')) {
@@ -55,6 +60,11 @@ trait LockTrait
         }
     }
 
+    /**
+     * Releases the lock of this command.
+     *
+     * @return bool
+     */
     protected function releaseLock()
     {
         if ($this->lock instanceof LockInterface) {
@@ -65,21 +75,21 @@ trait LockTrait
     }
 
     /**
-     * Return the Repository to operate on the Locks.
+     * Returns the Repository to operate on the Locks.
      *
      * @return RepositoryInterface
      */
     abstract public function getRepository();
 
     /**
-     * Return the Resource representing this Command.
+     * Returns the Resource representing this Command.
      *
      * @return ResourceInterface
      */
     abstract public function getResource();
 
     /**
-     * Return the Acquirer representing this Command.
+     * Returns the Acquirer representing this Command.
      *
      * @return AcquirerInterface
      */

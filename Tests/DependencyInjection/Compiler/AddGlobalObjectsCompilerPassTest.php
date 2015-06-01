@@ -3,9 +3,7 @@
 namespace Havvg\Bundle\DRYBundle\Tests\DependencyInjection\Compiler;
 
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
-
 use Havvg\Bundle\DRYBundle\DependencyInjection\Compiler\AddGlobalObjectsCompilerPass;
-
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 class FileDisposer
 {
     /**
-     * Add response headers to dispose the given file.
+     * Adds response headers to dispose the given file.
      *
      * @param string   $filename
      * @param string   $content

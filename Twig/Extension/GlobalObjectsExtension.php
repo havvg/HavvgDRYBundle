@@ -2,14 +2,19 @@
 
 namespace Havvg\Bundle\DRYBundle\Twig\Extension;
 
-class GlobalObjectsExtension extends \Twig_Extension
+final class GlobalObjectsExtension extends \Twig_Extension
 {
-    protected $globals = array();
+    /**
+     * A list of global objects to make available in Twig templates.
+     *
+     * @var object[]
+     */
+    private $globals = array();
 
     /**
-     * Add another global variable to the storage.
+     * Adds another global variable to the storage.
      *
-     * @param string $key   The key represents the global variable name within your templates.
+     * @param string $key   The key represents the global variable name within the templates.
      * @param mixed  $value The actual value to be addressed by the key.
      *
      * @return GlobalObjectsExtension
@@ -22,9 +27,7 @@ class GlobalObjectsExtension extends \Twig_Extension
     }
 
     /**
-     * Returns a list of global variables to add to the existing list.
-     *
-     * @return array An array of global variables
+     * {@inheritdoc}
      */
     public function getGlobals()
     {
@@ -32,9 +35,7 @@ class GlobalObjectsExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
+     * {@inheritdoc}
      */
     public function getName()
     {

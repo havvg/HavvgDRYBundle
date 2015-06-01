@@ -44,6 +44,12 @@ trait ClusterTrait
         $this->addOption('cluster', null, InputOption::VALUE_REQUIRED, 'The active cluster. This identifies a member of the cluster, in range from 1 to cluster-size.', 1);
     }
 
+    /**
+     * Initializes the cluster configuration from the input.
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     */
     protected function initializeCluster(InputInterface $input, OutputInterface $output)
     {
         $clusterSize = (int) $input->getOption('cluster-size');
@@ -62,7 +68,7 @@ trait ClusterTrait
     }
 
     /**
-     * Check whether the given item is processed by this cluster.
+     * Checks whether the given item is processed by this cluster.
      *
      * This method is safe for non-clustered usage.
      * If you don't pass any options, a 1:1 cluster is given and the current process will process any item.
@@ -82,11 +88,21 @@ trait ClusterTrait
      */
     abstract public function addOption($name, $shortcut = null, $mode = null, $description = '', $default = null);
 
+    /**
+     * Returns the member id of the cluster.
+     *
+     * @return int
+     */
     public function getCluster()
     {
         return $this->cluster;
     }
 
+    /**
+     * Returns the size of the cluster.
+     *
+     * @return int
+     */
     public function getClusterSize()
     {
         return $this->clusterSize;
