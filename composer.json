@@ -10,35 +10,41 @@
             "email": "tuebernickel@gmail.com"
         }
     ],
-    "require": {
-        "symfony/framework-bundle": "~2.7"
+
+    "autoload": {
+        "psr-4": {
+            "Havvg\\Bundle\\DRYBundle\\": ""
+        },
+        "exclude-from-classmap": [ "Tests/" ]
     },
+
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/framework-bundle": "~2.8"
+    },
+    "require-dev": {
+        "havvg/lock": "~2.0",
+        "phpunit/phpunit": "~4.6",
+        "psr/log": "~1.0",
+        "twig/twig": "~2.0",
+        "symfony/console": "~2.8",
+        "symfony/finder": "~2.8",
+        "symfony/form": "~2.8",
+        "symfony/options-resolver": "~2.8",
+        "symfony/security": "~2.8",
+        "symfony/expression-language": "~2.8"
+    },
+
     "suggest": {
         "twig/twig": "Enables the usage of Twig extensions.",
         "symfony/finder": "Enables the usage of file based helpers.",
         "symfony/form": "Enables the usage of form extensions.",
         "symfony/options-resolver": "Enables the usage of the ContainerConfigurationRegistry."
     },
-    "autoload": {
-        "psr-4": {
-            "Havvg\\Bundle\\DRYBundle\\": ""
-        }
-    },
+
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "4.0.x-dev"
         }
-    },
-    "require-dev": {
-        "havvg/lock": "~2.0",
-        "phpunit/phpunit": "~4.6",
-        "psr/log": "~1.0",
-        "twig/twig": "~1.12",
-        "symfony/console": "~2.7",
-        "symfony/finder": "~2.7",
-        "symfony/form": "~2.7",
-        "symfony/options-resolver": "~2.7",
-        "symfony/security": "~2.7",
-        "symfony/expression-language": "~2.7"
     }
 }
