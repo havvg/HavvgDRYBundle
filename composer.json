@@ -26,7 +26,7 @@
         "havvg/lock": "~2.0",
         "phpunit/phpunit": "~4.6",
         "psr/log": "~1.0",
-        "twig/twig": "~1.12|~2.0",
+        "twig/twig": "~1.23|~2.0",
         "symfony/console": "~2.8",
         "symfony/finder": "~2.8",
         "symfony/form": "~2.8",
