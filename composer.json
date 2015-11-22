@@ -20,7 +20,7 @@
 
     "minimum-stability": "dev",
     "require": {
-        "symfony/framework-bundle": "~2.8"
+        "symfony/framework-bundle": "~2.8|~3.0"
     },
     "require-dev": {
         "havvg/lock": "~2.0",
