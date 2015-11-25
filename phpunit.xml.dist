@@ -10,7 +10,7 @@
         stopOnFailure="false"
         syntaxCheck="false"
         forceCoversAnnotation="true"
-        bootstrap="./Tests/bootstrap.php">
+        bootstrap="./vendor/autoload.php">
 
     <testsuites>
         <testsuite name="HavvgDRYBundle Test Suite">
