@@ -2,8 +2,8 @@
 
 namespace Havvg\Bundle\DRYBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
@@ -42,13 +42,13 @@ abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $mapServices = array();
+        $mapServices = [];
         foreach ($container->findTaggedServiceIds($this->getMapServiceTag()) as $id => $tags) {
             foreach ($tags as $eachTag) {
                 $targetId = $eachTag['target'];
 
                 if (empty($mapServices[$targetId])) {
-                    $mapServices[$targetId] = array();
+                    $mapServices[$targetId] = [];
                 }
 
                 $mapServices[$targetId][] = $id;
@@ -63,12 +63,13 @@ abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
             foreach ($tags as $eachTag) {
                 $alias = $eachTag['alias'];
 
-                if (!empty($mapServices[$alias])) {
-                    $targetDefinition = $container->getDefinition($id);
+                if (empty($mapServices[$alias])) {
+                    continue;
+                }
 
-                    foreach ($mapServices[$alias] as $eachMapServiceId) {
-                        $targetDefinition->addMethodCall($this->getTargetMethod(), $this->getArguments($eachMapServiceId, $container));
-                    }
+                $targetDefinition = $container->getDefinition($id);
+                foreach ($mapServices[$alias] as $eachMapServiceId) {
+                    $targetDefinition->addMethodCall($this->getTargetMethod(), $this->getArguments($eachMapServiceId, $container, $eachTag));
                 }
             }
         }
@@ -79,12 +80,13 @@ abstract class AbstractTaggedMapCompilerPass implements CompilerPassInterface
      *
      * @param string           $id
      * @param ContainerBuilder $container
+     * @param array            $tag
      *
      * @return array
      */
-    protected function getArguments($id, ContainerBuilder $container)
+    protected function getArguments($id, ContainerBuilder $container, array $tag)
     {
-        return array(new Reference($id));
+        return [new Reference($id)];
     }
 
     /**

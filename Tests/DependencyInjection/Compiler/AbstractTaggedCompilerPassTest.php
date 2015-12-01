@@ -39,7 +39,7 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
         $builder
             ->expects($this->once())
             ->method('findTaggedServiceIds')
-            ->will($this->returnValue(array()))
+            ->will($this->returnValue([]))
         ;
 
         $compilerPass = new TaggedCompilerPass();
@@ -55,6 +55,7 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
         $providerService = new Definition();
         $providerService->setClass(get_class($provider));
         $providerService->addTag('acme.service_tag');
+        $providerService->addTag('acme.service_tag');
 
         $other = $this->getMock('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
         $otherService = new Definition();
@@ -62,20 +63,20 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
         $otherService->addTag('acme.different_tag');
 
         $builder = new ContainerBuilder();
-        $builder->addDefinitions(array(
+        $builder->addDefinitions([
             'acme.target_service' => $targetService,
             'acme.provider_service' => $providerService,
             'acme.other_service' => $otherService,
-        ));
+        ]);
 
         $builder->addCompilerPass(new TaggedCompilerPass());
         $builder->compile();
 
-        $this->assertNotEmpty($builder->getServiceIds(),
+        self::assertNotEmpty($builder->getServiceIds(),
             'The services have been injected.');
-        $this->assertNotEmpty($builder->get('acme.target_service'),
+        self::assertNotEmpty($builder->get('acme.target_service'),
             'The target service has been injected.');
-        $this->assertNotEmpty($builder->get('acme.provider_service'),
+        self::assertNotEmpty($builder->get('acme.provider_service'),
             'The provider service has been injected.');
 
         /*
@@ -88,13 +89,17 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
          *     ...
          */
         $targetMethodCalls = $builder->getDefinition('acme.target_service')->getMethodCalls();
-        $this->assertNotEmpty($targetMethodCalls,
+        self::assertNotEmpty($targetMethodCalls,
             'The target service got method calls added.');
-        $this->assertEquals('addService', $targetMethodCalls[0][0],
+        self::assertEquals('addService', $targetMethodCalls[0][0],
             'The target service got a provider added.');
-        $this->assertEquals('acme.provider_service', $targetMethodCalls[0][1][0],
+        self::assertEquals('acme.provider_service', $targetMethodCalls[0][1][0],
             'The target service got the correct provider added.');
-        $this->assertCount(1, $targetMethodCalls,
+        self::assertEquals('addService', $targetMethodCalls[1][0],
+            'The provider has been added twice (two tags).');
+        self::assertEquals('acme.provider_service', $targetMethodCalls[1][1][0],
+            'The target service got the correct provider added.');
+        self::assertCount(2, $targetMethodCalls,
             'The other service has not been added.');
     }
 }

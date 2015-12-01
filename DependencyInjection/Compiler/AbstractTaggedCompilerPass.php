@@ -2,8 +2,8 @@
 
 namespace Havvg\Bundle\DRYBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 abstract class AbstractTaggedCompilerPass implements CompilerPassInterface
@@ -47,10 +47,12 @@ abstract class AbstractTaggedCompilerPass implements CompilerPassInterface
         }
 
         foreach ($container->findTaggedServiceIds($this->getTag()) as $id => $tags) {
-            $container
-                ->getDefinition($this->getTargetService())
-                ->addMethodCall($this->getTargetMethod(), $this->getArguments($id, $container))
-            ;
+            foreach ($tags as $eachTag) {
+                $container
+                    ->getDefinition($this->getTargetService())
+                    ->addMethodCall($this->getTargetMethod(), $this->getArguments($id, $container, $eachTag))
+                ;
+            }
         }
     }
 
@@ -59,12 +61,13 @@ abstract class AbstractTaggedCompilerPass implements CompilerPassInterface
      *
      * @param string           $id
      * @param ContainerBuilder $container
+     * @param array            $tag
      *
      * @return array
      */
-    protected function getArguments($id, ContainerBuilder $container)
+    protected function getArguments($id, ContainerBuilder $container, array $tag)
     {
-        return array(new Reference($id));
+        return [new Reference($id)];
     }
 
     /**
