@@ -9,6 +9,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class AdvertiseEnvironmentListener implements EventSubscriberInterface
 {
+    /**
+     * @var string
+     */
     protected $advertisement = 'Running in <info>%1$s</info> environment with debug <info>%2$s</info>';
 
     public function onConsoleCommand(ConsoleCommandEvent $event)
@@ -20,6 +23,13 @@ class AdvertiseEnvironmentListener implements EventSubscriberInterface
         }
     }
 
+    /**
+     * Changes the advertisement being rendered when executing a command.
+     *
+     * @param string $advertisement
+     *
+     * @return AdvertiseEnvironmentListener
+     */
     public function setAdvertisement($advertisement)
     {
         $this->advertisement = $advertisement;
@@ -27,15 +37,23 @@ class AdvertiseEnvironmentListener implements EventSubscriberInterface
         return $this;
     }
 
+    /**
+     * Returns the advertisement to be rendered when executing a command.
+     *
+     * @return string
+     */
     public function getAdvertisement()
     {
         return $this->advertisement;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             ConsoleEvents::COMMAND => 'onConsoleCommand',
-        );
+        ];
     }
 }

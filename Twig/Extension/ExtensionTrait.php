@@ -22,7 +22,7 @@ trait ExtensionTrait
      */
     public function getTokenParsers()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -32,7 +32,7 @@ trait ExtensionTrait
      */
     public function getNodeVisitors()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -42,7 +42,7 @@ trait ExtensionTrait
      */
     public function getFilters()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -52,7 +52,7 @@ trait ExtensionTrait
      */
     public function getTests()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -62,7 +62,7 @@ trait ExtensionTrait
      */
     public function getFunctions()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -72,7 +72,7 @@ trait ExtensionTrait
      */
     public function getOperators()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -82,6 +82,6 @@ trait ExtensionTrait
      */
     public function getGlobals()
     {
-        return array();
+        return [];
     }
 }

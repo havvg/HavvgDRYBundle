@@ -28,7 +28,7 @@ class ContainerConfigurationRegistry
      * @param array                $options  The options applied to this registry.
      * @param OptionsResolver|null $resolver An optional resolver, if none is given an empty one will be used.
      */
-    public function __construct(KernelInterface $kernel, array $options = array(), OptionsResolver $resolver = null)
+    public function __construct(KernelInterface $kernel, array $options = [], OptionsResolver $resolver = null)
     {
         $this->kernel = $kernel;
 
@@ -116,7 +116,7 @@ class ContainerConfigurationRegistry
         /*
          * Load all environment specific bundle configuration files.
          */
-        if ($this->options['allow_env_bundles'] and is_dir($envConfigDir.'/'.$this->options['bundles_dir_name'])) {
+        if ($this->options['allow_env_bundles'] && is_dir($envConfigDir.'/'.$this->options['bundles_dir_name'])) {
             $envBundles = Finder::create()
                 ->files()
                 ->name('*.'.$type)
@@ -183,7 +183,7 @@ class ContainerConfigurationRegistry
      */
     protected function setDefaultOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             // The environment to load configuration for.
             'env' => $this->kernel->getEnvironment(),
 
@@ -211,12 +211,12 @@ class ContainerConfigurationRegistry
              * An ordered list of configuration files to load within the environment.
              * All files are optional.
              */
-            'config_files' => array(
+            'config_files' => [
                 'parameters',
                 'config',
                 'local',
-            ),
-        ));
+            ],
+        ]);
 
         $resolver->setAllowedTypes('env', ['string']);
 

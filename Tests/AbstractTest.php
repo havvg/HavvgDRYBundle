@@ -2,8 +2,6 @@
 
 namespace Havvg\Bundle\DRYBundle\Tests;
 
-use Havvg\Bundle\DRYBundle\Tests\Fixtures\Controller;
-
 abstract class AbstractTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -37,11 +35,6 @@ abstract class AbstractTest extends \PHPUnit_Framework_TestCase
         $builder = $this->getMock('Symfony\Component\DependencyInjection\ContainerBuilder');
 
         return $builder;
-    }
-
-    protected function createController()
-    {
-        return new Controller();
     }
 
     protected function getFixturesDirectory()

@@ -20,31 +20,31 @@ class ClusterTraitTest extends AbstractTest
 
     public function clusterProvider()
     {
-        return array(
+        return [
             // No actual clustering, single processing.
-            array(1, 1, 1, 0),
-            array(1, 1, 5, 0),
-            array(1, 1, 17, 0),
-            array(1, 1, 42, 0),
-            array(1, 1, 1337, 0),
+            [1, 1, 1, 0],
+            [1, 1, 5, 0],
+            [1, 1, 17, 0],
+            [1, 1, 42, 0],
+            [1, 1, 1337, 0],
 
             // Two members in the cluster.
-            array(2, 1, 1, 1),
-            array(2, 1, 2, 0),
-            array(2, 2, 1, 0),
-            array(2, 2, 2, 1),
+            [2, 1, 1, 1],
+            [2, 1, 2, 0],
+            [2, 2, 1, 0],
+            [2, 2, 2, 1],
 
             // Three members in the cluster.
-            array(3, 1, 1, 1),
-            array(3, 1, 2, 1),
-            array(3, 1, 3, 0),
-            array(3, 2, 1, 0),
-            array(3, 2, 2, 1),
-            array(3, 2, 3, 1),
-            array(3, 3, 1, 1),
-            array(3, 3, 2, 0),
-            array(3, 3, 3, 1),
-        );
+            [3, 1, 1, 1],
+            [3, 1, 2, 1],
+            [3, 1, 3, 0],
+            [3, 2, 1, 0],
+            [3, 2, 2, 1],
+            [3, 2, 3, 1],
+            [3, 3, 1, 1],
+            [3, 3, 2, 0],
+            [3, 3, 3, 1],
+        ];
     }
 
     /**
@@ -53,23 +53,23 @@ class ClusterTraitTest extends AbstractTest
     public function testCluster($size, $active, $record, $expected)
     {
         $tester = new CommandTester(new ClusterCommand());
-        $exit = $tester->execute(array(
+        $exit = $tester->execute([
             'record' => $record,
             '--cluster-size' => $size,
             '--cluster' => $active,
-        ));
+        ]);
 
-        $this->assertEquals($expected, $exit);
+        self::assertEquals($expected, $exit);
     }
 
     public function testNoCluster()
     {
         $tester = new CommandTester(new ClusterCommand());
-        $exit = $tester->execute(array(
+        $exit = $tester->execute([
             'record' => 5,
-        ));
+        ]);
 
-        $this->assertEquals(0, $exit);
+        self::assertEquals(0, $exit);
     }
 
     public function testInvalidCluster()
@@ -78,11 +78,11 @@ class ClusterTraitTest extends AbstractTest
 
         $this->setExpectedException('InvalidArgumentException');
 
-        $tester->execute(array(
+        $tester->execute([
             'record' => 8,
             '--cluster-size' => 5,
             '--cluster' => 0,
-        ));
+        ]);
     }
 
     public function testInvalidClusterSize()
@@ -91,10 +91,10 @@ class ClusterTraitTest extends AbstractTest
 
         $this->setExpectedException('OutOfRangeException');
 
-        $tester->execute(array(
+        $tester->execute([
             'record' => 8,
             '--cluster-size' => 5,
             '--cluster' => 7,
-        ));
+        ]);
     }
 }

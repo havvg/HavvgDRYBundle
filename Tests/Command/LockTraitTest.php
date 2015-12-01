@@ -35,11 +35,11 @@ class LockTraitTest extends AbstractTest
         ;
 
         $tester = new CommandTester($this->getMockCommand($repository));
-        $exit = $tester->execute(array(
+        $exit = $tester->execute([
             '--no-lock' => true,
-        ));
+        ]);
 
-        $this->assertEquals(0, $exit);
+        self::assertEquals(0, $exit);
     }
 
     public function testLockedCommandIsNotExecuted()
@@ -59,7 +59,7 @@ class LockTraitTest extends AbstractTest
 
         $this->setExpectedException('RuntimeException');
 
-        $tester->execute(array());
+        $tester->execute([]);
     }
 
     public function testLockIsReleased()
@@ -79,9 +79,9 @@ class LockTraitTest extends AbstractTest
         ;
 
         $tester = new CommandTester($this->getMockCommand($repository));
-        $exit = $tester->execute(array());
+        $exit = $tester->execute([]);
 
-        $this->assertEquals(0, $exit);
+        self::assertEquals(0, $exit);
     }
 
     public function testExpiredLockIsReplacedByNewOne()
@@ -118,9 +118,9 @@ class LockTraitTest extends AbstractTest
         ;
 
         $tester = new CommandTester($this->getMockCommand($repository));
-        $exit = $tester->execute(array());
+        $exit = $tester->execute([]);
 
-        $this->assertEquals(0, $exit);
+        self::assertEquals(0, $exit);
     }
 
     /**

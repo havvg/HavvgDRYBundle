@@ -9,7 +9,7 @@ final class GlobalObjectsExtension extends \Twig_Extension implements \Twig_Exte
      *
      * @var object[]
      */
-    private $globals = array();
+    private $globals = [];
 
     /**
      * Adds another global variable to the storage.

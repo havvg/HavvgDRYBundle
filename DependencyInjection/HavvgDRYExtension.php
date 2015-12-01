@@ -2,12 +2,15 @@
 
 namespace Havvg\Bundle\DRYBundle\DependencyInjection;
 
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Havvg\Bundle\DRYBundle\DependencyInjection\Loader\ServicesLoader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 class HavvgDRYExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $servicesLoader = new ServicesLoader(__DIR__.'/../Resources/config/services', $container);

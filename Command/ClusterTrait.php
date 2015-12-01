@@ -55,11 +55,11 @@ trait ClusterTrait
         $clusterSize = (int) $input->getOption('cluster-size');
         $cluster = (int) $input->getOption('cluster');
 
-        if ($clusterSize and !$cluster) {
+        if ($clusterSize && !$cluster) {
             throw new \InvalidArgumentException("The 'cluster' option is missing. A cluster-size is provided, but the current cluster is not defined.");
         }
 
-        if ($cluster < 1 or $cluster > $clusterSize) {
+        if ($cluster < 1 || $cluster > $clusterSize) {
             throw new \OutOfRangeException(sprintf("The 'cluster' option is invalid. It has to be in range 1..%d", $clusterSize));
         }
 

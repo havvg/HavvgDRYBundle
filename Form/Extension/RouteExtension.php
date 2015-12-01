@@ -41,21 +41,21 @@ class RouteExtension extends AbstractTypeExtension
      */
     final public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'route' => null,
-            'route_parameters' => array(),
+            'route_parameters' => [],
             'route_reference' => UrlGeneratorInterface::ABSOLUTE_PATH,
-        ));
+        ]);
 
-        $resolver->setAllowedTypes('route', array('null', 'string'));
-        $resolver->setAllowedTypes('route_parameters', array('array'));
+        $resolver->setAllowedTypes('route', ['null', 'string']);
+        $resolver->setAllowedTypes('route_parameters', ['array']);
 
-        $resolver->setAllowedValues('route_reference', array(
+        $resolver->setAllowedValues('route_reference', [
             UrlGeneratorInterface::ABSOLUTE_PATH,
             UrlGeneratorInterface::ABSOLUTE_URL,
             UrlGeneratorInterface::RELATIVE_PATH,
             UrlGeneratorInterface::NETWORK_PATH,
-        ));
+        ]);
     }
 
     /**
