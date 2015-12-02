@@ -1,0 +1,7 @@
+services:
+    havvg_dry.inject_controller_parameters_listener:
+        class: Havvg\Bundle\DRYBundle\EventListener\Controller\InjectControllerParametersListener
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: 'kernel.event_subscriber' }
