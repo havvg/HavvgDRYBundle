@@ -12,9 +12,9 @@ class AdvertiseEnvironmentListener implements EventSubscriberInterface
     /**
      * @var string
      */
-    protected $advertisement = 'Running in <info>%1$s</info> environment with debug <info>%2$s</info>';
+    private $advertisement = 'Running in <info>%1$s</info> environment with debug <info>%2$s</info>';
 
-    public function onConsoleCommand(ConsoleCommandEvent $event)
+    final public function onConsoleCommand(ConsoleCommandEvent $event)
     {
         $application = $event->getCommand()->getApplication();
         if ($application instanceof Application) {
@@ -30,7 +30,7 @@ class AdvertiseEnvironmentListener implements EventSubscriberInterface
      *
      * @return AdvertiseEnvironmentListener
      */
-    public function setAdvertisement($advertisement)
+    final public function setAdvertisement($advertisement)
     {
         $this->advertisement = $advertisement;
 
@@ -50,7 +50,7 @@ class AdvertiseEnvironmentListener implements EventSubscriberInterface
     /**
      * {@inheritdoc}
      */
-    public static function getSubscribedEvents()
+    final public static function getSubscribedEvents()
     {
         return [
             ConsoleEvents::COMMAND => 'onConsoleCommand',

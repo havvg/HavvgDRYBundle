@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class RouteExtension extends AbstractTypeExtension
+final class RouteExtension extends AbstractTypeExtension
 {
     /**
      * @var UrlGeneratorInterface
@@ -19,7 +19,7 @@ class RouteExtension extends AbstractTypeExtension
      *
      * @param UrlGeneratorInterface $generator
      */
-    final public function __construct(UrlGeneratorInterface $generator)
+    public function __construct(UrlGeneratorInterface $generator)
     {
         $this->generator = $generator;
     }
@@ -27,7 +27,7 @@ class RouteExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    final public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (empty($options['route'])) {
             return;
@@ -39,7 +39,7 @@ class RouteExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    final public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'route' => null,
