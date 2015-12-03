@@ -50,7 +50,7 @@ class AddGlobalObjectsPassTest extends AbstractTest
     public function testWithTaggedServices()
     {
         $extensionService = new Definition();
-        $extensionService->setClass(GlobalObjectsExtension::class);
+        $extensionService->setClass('Havvg\Bundle\DRYBundle\Twig\Extension\GlobalObjectsExtension');
 
         $globalObject = $this->getMock('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
         $globalObjectService = new Definition();
@@ -108,7 +108,7 @@ class AddGlobalObjectsPassTest extends AbstractTest
     public function testWithoutAlias()
     {
         $extensionService = new Definition();
-        $extensionService->setClass(GlobalObjectsExtension::class);
+        $extensionService->setClass('Havvg\Bundle\DRYBundle\Twig\Extension\GlobalObjectsExtension');
 
         $globalObject = $this->getMock('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
         $globalObjectService = new Definition();

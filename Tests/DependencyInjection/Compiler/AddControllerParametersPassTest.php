@@ -3,7 +3,6 @@
 namespace Havvg\Bundle\DRYBundle\Tests\DependencyInjection\Compiler;
 
 use Havvg\Bundle\DRYBundle\DependencyInjection\Compiler\AddControllerParametersPass;
-use Havvg\Bundle\DRYBundle\EventListener\Controller\InjectControllerParametersListener;
 use Havvg\Bundle\DRYBundle\Tests\AbstractTest;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -16,7 +15,7 @@ class AddControllerParametersPassTest extends AbstractTest
     public function testArguments()
     {
         $targetService = new Definition();
-        $targetService->setClass(InjectControllerParametersListener::class);
+        $targetService->setClass('Havvg\Bundle\DRYBundle\EventListener\Controller\InjectControllerParametersListener');
 
         $parameterService = new Definition();
         $parameterService->setClass('stdClass');

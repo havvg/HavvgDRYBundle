@@ -1,7 +1,6 @@
 language: php
 
 php:
-    - 5.3
     - 5.4
     - 5.5
     - 5.6
@@ -17,29 +16,32 @@ cache:
 
 env:
     - SYMFONY_VERSION=2.7.*
-    - SYMFONY_VERSION=2.8.*@dev
-    - SYMFONY_VERSION=3.0.*@dev
+    - SYMFONY_VERSION=2.8.*
+    - SYMFONY_VERSION=3.0.*
+    - SYMFONY_VERSION=^3.0
     - COMPOSER_FLAGS="--prefer-lowest"
-    - SYMFONY_VERSION=2.8.*@dev COMPOSER_FLAGS="--prefer-lowest"
-    - SYMFONY_VERSION=3.0.*@dev COMPOSER_FLAGS="--prefer-lowest"
+    - SYMFONY_VERSION=2.8.* COMPOSER_FLAGS="--prefer-lowest"
+    - SYMFONY_VERSION=3.0.* COMPOSER_FLAGS="--prefer-lowest"
+    - SYMFONY_VERSION=dev-master
 
 matrix:
     fast_finish: true
 
     exclude:
-        - php: 5.3
-          env: SYMFONY_VERSION=3.0.*@dev
-        - php: 5.3
-          env: SYMFONY_VERSION=3.0.*@dev COMPOSER_FLAGS="--prefer-lowest"
         - php: 5.4
-          env: SYMFONY_VERSION=3.0.*@dev
+          env: SYMFONY_VERSION=3.0.*
         - php: 5.4
-          env: SYMFONY_VERSION=3.0.*@dev COMPOSER_FLAGS="--prefer-lowest"
+          env: SYMFONY_VERSION=3.0.* COMPOSER_FLAGS="--prefer-lowest"
+        - php: 5.4
+          env: SYMFONY_VERSION=^3.0
+        - php: 5.4
+          env: SYMFONY_VERSION=dev-master
 
     allow_failures:
         - php: 7
         - php: hhvm
         - php: nightly
+        - env: SYMFONY_VERSION=dev-master
 
 before_install:
     - composer self-update
