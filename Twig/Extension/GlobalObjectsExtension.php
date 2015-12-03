@@ -2,8 +2,10 @@
 
 namespace Havvg\Bundle\DRYBundle\Twig\Extension;
 
-final class GlobalObjectsExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
+final class GlobalObjectsExtension implements \Twig_ExtensionInterface, \Twig_Extension_GlobalsInterface
 {
+    use ExtensionTrait;
+
     /**
      * A list of global objects to make available in Twig templates.
      *
