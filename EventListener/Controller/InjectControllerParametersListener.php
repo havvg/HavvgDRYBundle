@@ -93,7 +93,7 @@ final class InjectControllerParametersListener implements EventSubscriberInterfa
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::CONTROLLER => 'onKernelController',
+            KernelEvents::CONTROLLER => ['onKernelController', 32],
         ];
     }
 }
