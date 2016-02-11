@@ -102,4 +102,45 @@ class AbstractTaggedCompilerPassTest extends AbstractTest
         self::assertCount(2, $targetMethodCalls,
             'The other service has not been added.');
     }
+
+    public function testWithPriority()
+    {
+        $targetService = new Definition();
+        $targetService->setClass('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
+
+        $provider = $this->getMock('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
+        $providerService = new Definition();
+        $providerService->setClass(get_class($provider));
+        $providerService->addTag('acme.service_tag');
+
+        $other = $this->getMock('Havvg\Bundle\DRYBundle\Tests\Fixtures\TargetService');
+        $otherService = new Definition();
+        $otherService->setClass(get_class($other));
+        $otherService->addTag('acme.service_tag', ['priority' => 32]);
+
+        $builder = new ContainerBuilder();
+        $builder->addDefinitions([
+            'acme.target_service' => $targetService,
+            'acme.provider_service' => $providerService,
+            'acme.other_service' => $otherService,
+        ]);
+
+        $builder->addCompilerPass(new TaggedCompilerPass());
+        $builder->compile();
+
+        /*
+         * Schema:
+         *
+         * [0] The list of methods.
+         *   [0] The name of the method to call.
+         *   [1] The arguments to pass into the method call.
+         *     [0] First argument to pass into the method call.
+         *     ...
+         */
+        $targetMethodCalls = $builder->getDefinition('acme.target_service')->getMethodCalls();
+        self::assertEquals('acme.other_service', $targetMethodCalls[0][1][0],
+            'The target service got the correct provider added.');
+        self::assertEquals('acme.provider_service', $targetMethodCalls[1][1][0],
+            'The target service got the correct provider added.');
+    }
 }

@@ -46,11 +46,26 @@ abstract class AbstractTaggedCompilerPass implements CompilerPassInterface
             return;
         }
 
+        $priorities = [];
         foreach ($container->findTaggedServiceIds($this->getTag()) as $id => $tags) {
             foreach ($tags as $eachTag) {
+                $priority = empty($eachTag['priority']) ? 0 : $eachTag['priority'];
+
+                if (empty($priorities[$priority])) {
+                    $priorities[$priority] = [];
+                }
+
+                $priorities[$priority][] = ['id' => $id, 'tag' => $eachTag];
+            }
+        }
+
+        krsort($priorities);
+
+        foreach ($priorities as $services) {
+            foreach ($services as $eachService) {
                 $container
                     ->getDefinition($this->getTargetService())
-                    ->addMethodCall($this->getTargetMethod(), $this->getArguments($id, $container, $eachTag))
+                    ->addMethodCall($this->getTargetMethod(), $this->getArguments($eachService['id'], $container, $eachService['tag']))
                 ;
             }
         }
