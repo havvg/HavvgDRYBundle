@@ -2,7 +2,7 @@
 
 namespace Havvg\Bundle\DRYBundle\Twig\Extension;
 
-final class GlobalObjectsExtension implements \Twig_ExtensionInterface, \Twig_Extension_GlobalsInterface
+final class GlobalObjectsExtension implements \Twig_ExtensionInterface, \Twig_Extension_GlobalsInterface, \Twig_Extension_InitRuntimeInterface
 {
     use ExtensionTrait;
 
